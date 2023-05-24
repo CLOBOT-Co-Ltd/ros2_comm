@@ -16,24 +16,23 @@ from ros2cli.verb import VerbExtension
 
 from ros2commcli.api import test_completer, SelectCompleter
 
-class PubVerb(VerbExtension):
-    """Set the publisher to load or unload"""
+class LoadVerb(VerbExtension):
+    """Load the id's topic and service"""
 
     def add_arguments(self, parser, cli_name):
+
         arg = parser.add_argument(
-            'topic_name',
-            help="Name of the ROS topic")
+            'publisher',
+            help="Publisher's ID")
         arg.completer = test_completer
 
-        arg = parser.add_argument(
-            'topic_type',
-            help="Type of the ROS topic")
-        arg.completer = SelectCompleter(key='topic_name')
+        parser.add_argument(
+            '-t', '--topic', action='store_true',
+            help="Load all of the ID's publishing topics")
         
-        arg = parser.add_argument(
-            "state",
-            choices=["load", "unload"],
-            help="State in which to add or remove the topic")
-
+        parser.add_argument(
+            '-s', '--service', action='store_true',
+            help="Load all of the ID's responsable services")
+        
     def main(self, *, args):
         ...

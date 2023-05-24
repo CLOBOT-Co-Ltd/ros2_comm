@@ -49,13 +49,15 @@ setup(
         "ros2commcli.verb": [
             "info = ros2commcli.verb.info:InfoVerb",
             "list = ros2commcli.verb.list:ListVerb",
-            "check = ros2commcli.verb.check:CheckVerb",
+            "add = ros2commcli.verb.add:AddVerb",
+            "remove = ros2commcli.verb.remove:RemoveVerb",
             "set = ros2commcli.verb.set:SetVerb",
-            "load = ros2commcli.verb.load:LoadVerb",
             "pub = ros2commcli.verb.pub:PubVerb",
             "sub = ros2commcli.verb.sub:SubVerb",
             "req = ros2commcli.verb.req:ReqVerb",
             "res = ros2commcli.verb.res:ResVerb",
+            "load = ros2commcli.verb.load:LoadVerb",
+            "unload = ros2commcli.verb.unload:UnloadVerb",
         ],
     },
 )

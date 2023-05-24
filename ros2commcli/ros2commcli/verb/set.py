@@ -14,26 +14,16 @@
 
 from ros2cli.verb import VerbExtension
 
-from ros2commcli.api import SelectCompleter
+from ros2commcli.api import test_completer
 
 class SetVerb(VerbExtension):
-    """Set the publisher to load or unload"""
+    """Set the type of the comm"""
 
     def add_arguments(self, parser, cli_name):
         arg = parser.add_argument(
-            'key',
-            choices=['id', 'type', 'group'],
-            help="Key to set")
-
-        arg = parser.add_argument(
-            'value',
-            help="Value correspoding to key")
-        arg.completer = SelectCompleter(key='key')
-
-        arg = parser.add_argument(
-            'state',
-            choices=['add', 'remove'],
-            help="State in which to add or remove the key-value")
+            '--type', type=str,
+            help="Set the type of this device")
+        arg.completer = test_completer
 
     def main(self, *, args):
         ...

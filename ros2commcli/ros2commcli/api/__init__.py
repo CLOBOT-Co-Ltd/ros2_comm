@@ -14,15 +14,11 @@
 
 import rclpy
 
-# from ros2cli.node.direct import DirectNode
-
-# class LoadCompleter:  
-#     def __call__(self, prefix, pasred_args, **kwargs):
-#         with DirectNode(pasred_args) as node:
-#             return ["TEST1", "TEST2"]
-
 def test_completer(**kwargs):
-    return ["TEST1", "TEST2"]
+    return [".", "..", "TEST1", "TEST2"]
+
+def list_completer(**kwargs):
+    return ["sub", "group", "type"]
 
 def test_select_completer(key=None):
     if key == "id":
@@ -64,3 +60,4 @@ class SelectCompleter:
             return ["Service1", "Service2"]
         
         return [get_key]
+    

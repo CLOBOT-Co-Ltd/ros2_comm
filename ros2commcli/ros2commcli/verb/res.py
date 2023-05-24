@@ -35,6 +35,5 @@ class ResVerb(VerbExtension):
             choices=["load", "unload"],
             help="State in which to add or remove the service")
 
-
     def main(self, *, args):
         ...

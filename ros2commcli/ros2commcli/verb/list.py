@@ -14,14 +14,29 @@
 
 from ros2cli.verb import VerbExtension
 
+from ros2commcli.api import test_completer, list_completer, SelectCompleter
+
 class ListVerb(VerbExtension):
     """Prints the comm's List Informations"""
 
     def add_arguments(self, parser, cli_name):
+        parser.add_argument(
+            '-t', '--type', action='store_true',
+            help="Print the entire type list")
+
+        parser.add_argument(
+            '-g', '--group', action='store_true',
+            help="Print the entire group list")
+        
         arg = parser.add_argument(
-            'state',
-            choices=['sub-id', 'sub-type', 'sub-group', 'all-id', 'all-type', 'all-group', 'pub', 'sub', 'req', 'res'],
-            help="State of what kind of list to print")
+            '--type-name', type=str,
+            help="Print the entire ID list corresponding to TYPE_NAME")
+        arg.completer = test_completer
+
+        arg = parser.add_argument(
+            '--group-name', type=str,
+            help="Print the entire ID list belonging to GROUP_NAME")
+        arg.completer = test_completer
         
     def main(self, *, args):
         ...

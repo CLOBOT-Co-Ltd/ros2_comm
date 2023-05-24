@@ -14,19 +14,30 @@
 
 from ros2cli.verb import VerbExtension
 
-from ros2commcli.api import test_completer
+from ros2commcli.api import test_completer, list_completer, SelectCompleter
 
-class CheckVerb(VerbExtension):
-    """Prints the comm's Check Informations"""
+class RemoveVerb(VerbExtension):
+    """Remove the comm's Subscription Informations"""
 
     def add_arguments(self, parser, cli_name):
-        arg = parser.add_argument("robot_id", help="ID of the robot you want to check")
+        arg = parser.add_argument(
+            '--group', type=str,
+            help="Remove the Group to belong to")
+        arg.completer = test_completer
+        
+        arg = parser.add_argument(
+            '--id', type=str,
+            help="Remove the ID to subscribe")
         arg.completer = test_completer
 
         arg = parser.add_argument(
-            'state',
-            choices=['topic', 'service', 'all'],
-            help="State of what kind of interface to print")
-
+            '--all-id', action='store_true',
+            help="Remove all the ids that exist within the group to which you belong")
+        
+        arg = parser.add_argument(
+            '--belong-to', type=str,
+            help="Remove all the ids that exist within this group")
+        arg.completer = test_completer
+        
     def main(self, *, args):
         ...

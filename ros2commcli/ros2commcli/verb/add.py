@@ -14,26 +14,30 @@
 
 from ros2cli.verb import VerbExtension
 
-from ros2commcli.api import test_completer, SelectCompleter
+from ros2commcli.api import test_completer, list_completer, SelectCompleter
 
-class PubVerb(VerbExtension):
-    """Set the publisher to load or unload"""
+class AddVerb(VerbExtension):
+    """Add the comm's Subscription Informations"""
 
     def add_arguments(self, parser, cli_name):
         arg = parser.add_argument(
-            'topic_name',
-            help="Name of the ROS topic")
+            '--group', type=str,
+            help="Add the Group to belong to")
+        arg.completer = test_completer
+        
+        arg = parser.add_argument(
+            '--id', type=str,
+            help="Add the ID to subscribe")
         arg.completer = test_completer
 
         arg = parser.add_argument(
-            'topic_type',
-            help="Type of the ROS topic")
-        arg.completer = SelectCompleter(key='topic_name')
+            '--all-id', action='store_true',
+            help="Add all the ids that exist within the group to which you belong")
         
         arg = parser.add_argument(
-            "state",
-            choices=["load", "unload"],
-            help="State in which to add or remove the topic")
-
+            '--belong-to', type=str,
+            help="Add all the ids that exist within this group")
+        arg.completer = test_completer
+        
     def main(self, *, args):
         ...
