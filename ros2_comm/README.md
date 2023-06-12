@@ -1,19 +1,33 @@
 # ROS2COMM
 
-## Install Zyre
+## Install Zyre Python Bindings
+
+### Install ZMQ Libraries
 
 ```bash
 echo "deb http://download.opensuse.org/repositories/network:/messaging:/zeromq:/release-stable/Debian_9.0/ ./" >> /etc/apt/sources.list
 wget https://download.opensuse.org/repositories/network:/messaging:/zeromq:/release-stable/Debian_9.0/Release.key -O- | sudo apt-key add
 sudo apt-get install libzmq3-dev
-sudo apt-get install libczmq-dev
 ```
 
+### Install czmq python bindings
+
 ```bash
-# Run this following command in the 'src' directory
+git clone https://github.com/zeromq/czmq.git
+
+cd czmq/bindings/python
+
+python3 setup.py build
+sudo python3 setup.py install
+```
+
+### Install zyre python bindings
+
+```bash
 git clone https://github.com/zeromq/zyre.git
 
-# build
-source /opt/ros/[rosdistro]/setup.bash
-colcon build
+cd zyre/bindings/python
+
+python3 setup.py build
+sudo python3 setup.py install
 ```

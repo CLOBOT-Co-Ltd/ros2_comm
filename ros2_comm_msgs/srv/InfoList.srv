@@ -1,4 +1,3 @@
+bool all
 ---
 ros2_comm_msgs/RobotInfo[] info
-ros2_comm_msgs/PubTopic[] pub
-ros2_comm_msgs/ResService[] res
