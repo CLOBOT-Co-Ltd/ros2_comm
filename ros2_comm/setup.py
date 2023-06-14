@@ -30,7 +30,10 @@ setup(
         ("share/" + package_name + "/config", glob("config/*")),
         ("share/" + package_name + "/launch", glob("launch/*.launch.py")),
     ],
-    install_requires=["setuptools"],
+    install_requires=[
+        "setuptools",
+        "ros2_comm_msgs",
+    ],
     zip_safe=True,
     maintainer="ClobotPaul",
     maintainer_email="paul@clobot.co.kr",
